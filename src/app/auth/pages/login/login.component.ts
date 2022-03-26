@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -15,9 +16,12 @@ export class LoginComponent {
         password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     });
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private authService: AuthService) {}
 
     public login(): void {
         console.log(this.form);
+        this.authService.authentication(this.form.value).subscribe((result) => {
+            console.log(result);
+        });
     }
 }
