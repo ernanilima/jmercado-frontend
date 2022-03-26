@@ -20,8 +20,17 @@ import { TreeTableModule } from 'primeng/treetable';
 import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
-    exports: [ButtonModule, InputTextModule, InputNumberModule, PasswordModule, InputMaskModule],
-    providers: [ConfirmationService, MessageService],
+    exports: [
+        ButtonModule, //
+        InputTextModule,
+        InputNumberModule,
+        PasswordModule,
+        InputMaskModule,
+    ],
+    providers: [
+        ConfirmationService, //
+        MessageService,
+    ],
 })
 export class PrimeNgModule {}
 // usado apenas para agrupar as importacoes do primeng

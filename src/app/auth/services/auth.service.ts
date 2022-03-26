@@ -10,7 +10,9 @@ import { LoginDto } from '../interfaces/login.dto';
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient //
+    ) {}
 
     /**
      * Realizar o login
