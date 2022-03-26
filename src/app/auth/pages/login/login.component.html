@@ -1,0 +1,36 @@
+<div class="flex flex-column justify-content-center p-fluid" style="height: 100%">
+    <h3>Login Do Usuário</h3>
+    <form [formGroup]="form" id="form-login" autocomplete="off" (ngSubmit)="login()">
+        <div class="mb-3">
+            <span class="p-float-label">
+                <p-inputMask
+                    formControlName="companyEin"
+                    mask="99.999.999.9999-99"
+                    [autoClear]="false"
+                    [unmask]="true"></p-inputMask>
+                <label>CNPJ da Empresa</label>
+            </span>
+        </div>
+
+        <div class="mb-3">
+            <div class="p-float-label">
+                <input pInputText formControlName="email" type="text" />
+                <label>E-mail do Usuário</label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="p-float-label">
+                <p-password
+                    formControlName="password"
+                    [feedback]="false"
+                    [toggleMask]="form.get('password')!.touched"></p-password>
+                <label>Senha do Usuário</label>
+            </div>
+        </div>
+    </form>
+
+    <div class="d-flex jc-between">
+        <button pButton type="submit" form="form-login" class="btn btn-primary">Login</button>
+    </div>
+</div>

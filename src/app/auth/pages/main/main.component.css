@@ -1,0 +1,15 @@
+.ernani-h-100 {
+    height: 100%;
+}
+.ernani-main-login {
+    height: 30em;
+}
+
+.logo-font-family {
+    font-family: Buda;
+}
+
+@font-face {
+    font-family: Buda;
+    src: url(../../../../assets/fonts/buda_light.ttf);
+}

@@ -17,26 +17,10 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TreeTableModule } from 'primeng/treetable';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
-    exports: [
-        ButtonModule,
-        CardModule,
-        ConfirmDialogModule,
-        CheckboxModule,
-        DialogModule,
-        DividerModule,
-        InputTextModule,
-        InputNumberModule,
-        MessagesModule,
-        MessageModule,
-        PasswordModule,
-        PanelModule,
-        PanelMenuModule,
-        TableModule,
-        ToastModule,
-        TreeTableModule,
-    ],
+    exports: [ButtonModule, InputTextModule, InputNumberModule, PasswordModule, InputMaskModule],
     providers: [ConfirmationService, MessageService],
 })
 export class PrimeNgModule {}
