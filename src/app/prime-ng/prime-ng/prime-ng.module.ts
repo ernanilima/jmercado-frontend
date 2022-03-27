@@ -22,6 +22,8 @@ import { InputMaskModule } from 'primeng/inputmask';
 @NgModule({
     exports: [
         ButtonModule, //
+        CardModule,
+        DividerModule,
         InputTextModule,
         InputNumberModule,
         InputMaskModule,

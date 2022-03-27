@@ -1,6 +1,13 @@
-<div class="flex flex-column justify-content-center p-fluid" style="height: 100%">
-    <h3>Login Do Usuário</h3>
-    <form [formGroup]="form" id="form-login" autocomplete="off" (ngSubmit)="login()">
+<p-card class="mt-auto mb-auto flex-auto">
+    <ng-template pTemplate="title">
+        <small>Login Do Usuário</small>
+    </ng-template>
+    <form
+        [formGroup]="form"
+        id="form-login"
+        autocomplete="off"
+        (ngSubmit)="login()"
+        class="p-fluid">
         <div class="mb-3">
             <span class="p-float-label">
                 <p-inputMask
@@ -37,9 +44,24 @@
                 {{ getErrorMessage('password') }}
             </small>
         </div>
+        <button
+            pButton
+            type="submit"
+            form="form-login"
+            class="btn btn-primary"
+            label="Login"></button>
     </form>
-
-    <div class="d-flex jc-between">
-        <button pButton type="submit" form="form-login" class="btn btn-primary">Login</button>
-    </div>
-</div>
+    <ng-template pTemplate="footer">
+        <p-divider align="center">
+            <b>Ou</b>
+        </p-divider>
+        <div class="flex justify-content-center">
+            <button
+                pButton
+                type="button"
+                (click)="registerCompany()"
+                class="p-button-link p-button-sm"
+                label="Cadastrar uma Empresa"></button>
+        </div>
+    </ng-template>
+</p-card>

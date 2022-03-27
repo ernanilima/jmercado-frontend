@@ -39,4 +39,8 @@ export class LoginComponent {
                 console.log(result);
             });
     }
+
+    public registerCompany(): void {
+        console.log('Cadastrar uma Empresa');
+    }
 }
