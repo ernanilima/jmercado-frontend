@@ -10,6 +10,9 @@
                     [unmask]="true"></p-inputMask>
                 <label>CNPJ da Empresa</label>
             </span>
+            <small class="p-error" *ngIf="validateField('companyEin')">
+                {{ getErrorMessage('companyEin') }}
+            </small>
         </div>
 
         <div class="mb-3">
@@ -17,6 +20,9 @@
                 <input pInputText formControlName="email" type="text" />
                 <label>E-mail do Usuário</label>
             </div>
+            <small class="p-error" *ngIf="validateField('email')">
+                {{ getErrorMessage('email') }}
+            </small>
         </div>
 
         <div class="mb-3">
@@ -27,6 +33,9 @@
                     [toggleMask]="form.get('password')!.touched"></p-password>
                 <label>Senha do Usuário</label>
             </div>
+            <small class="p-error" *ngIf="validateField('password')">
+                {{ getErrorMessage('password') }}
+            </small>
         </div>
     </form>
 
