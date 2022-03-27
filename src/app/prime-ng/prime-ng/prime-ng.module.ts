@@ -24,8 +24,11 @@ import { InputMaskModule } from 'primeng/inputmask';
         ButtonModule, //
         InputTextModule,
         InputNumberModule,
-        PasswordModule,
         InputMaskModule,
+        MessagesModule,
+        MessageModule,
+        PasswordModule,
+        ToastModule,
     ],
     providers: [
         ConfirmationService, //

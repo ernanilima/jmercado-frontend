@@ -1,3 +1,9 @@
+<div
+    class="fixed right-0 p-2 m-2 border-round text-xs scalein animation-linear animation-duration-200"
+    [ngClass]="connectionOk ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'"
+    *ngIf="showStatus">
+    {{ textConnection }}
+</div>
 <div class="grid ernani-h-100">
     <div
         class="col-6 flex align-items-center justify-content-center"
