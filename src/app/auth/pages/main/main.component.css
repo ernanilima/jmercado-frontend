@@ -9,6 +9,15 @@
     font-family: Buda;
 }
 
+::ng-deep .ernani-inputgroup-inputmask-addon {
+    border-left: 0px;
+}
+
+::ng-deep .ernani-inputgroup-inputmask .p-inputmask {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
 @font-face {
     font-family: Buda;
     src: url(../../../../assets/fonts/buda_light.ttf);

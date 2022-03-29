@@ -1,0 +1,196 @@
+<form [formGroup]="form" autocomplete="off" (ngSubmit)="registerCompany()">
+    <h5>Dados da Empresa</h5>
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="companyName"
+                    [value]="form.get('companyName')?.value | titlecase" />
+                <label>Razão social</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="tradingName"
+                    [value]="form.get('tradingName')?.value | titlecase" />
+                <label>Nome Fantasia</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <span class="p-float-label">
+                <p-inputMask
+                    mask="99.999.999.9999-99"
+                    [autoClear]="false"
+                    [unmask]="true"
+                    formControlName="ein"></p-inputMask>
+                <label>CNPJ</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input pInputText type="text" formControlName="email" />
+                <label>E-mail</label>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6" formGroupName="telephone">
+            <div class="p-float-label">
+                <p-inputMask
+                    mask="(99) 9999-9999"
+                    [autoClear]="false"
+                    [unmask]="true"
+                    formControlName="telephone"></p-inputMask>
+                <label>Telefone</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6" formGroupName="telephone">
+            <div class="p-inputgroup">
+                <div class="p-float-label">
+                    <p-inputMask
+                        class="p-float-label ernani-inputgroup-inputmask"
+                        mask="(99) 9 9999-9999"
+                        [autoClear]="false"
+                        [unmask]="true"
+                        formControlName="cellPhone"></p-inputMask>
+                    <label>Celular</label>
+                </div>
+                <span class="p-inputgroup-addon ernani-inputgroup-inputmask-addon">
+                    <p-checkbox
+                        binary="true"
+                        [formControl]="this.form.controls['telephone'].get('whatsappCellPhone')">
+                    </p-checkbox>
+                </span>
+                <span class="p-inputgroup-addon ernani-inputgroup-inputmask-addon">
+                    <i class="pi pi-whatsapp" style="line-height: 1.25"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <h5>Endereço</h5>
+    <div class="grid p-fluid" formGroupName="address">
+        <div class="col-12 md:col-6">
+            <span class="p-float-label">
+                <p-inputMask
+                    mask="99999-999"
+                    [autoClear]="false"
+                    [unmask]="true"
+                    formControlName="zipCode"></p-inputMask>
+                <label>CEP</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="country"
+                    [value]="form.get('address.country')?.value | titlecase" />
+                <label>País</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="state"
+                    [value]="form.get('address.state')?.value | titlecase" />
+                <label>Estado</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="city"
+                    [value]="form.get('address.city')?.value | titlecase" />
+                <label>Cidade</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="district"
+                    [value]="form.get('address.district')?.value | titlecase" />
+                <label>Bairro</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="street"
+                    [value]="form.get('address.street')?.value | titlecase" />
+                <label>Logradouro</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="number"
+                    [value]="form.get('address.number')?.value | titlecase" />
+                <label>Número</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="complement"
+                    [value]="form.get('address.complement')?.value | titlecase" />
+                <label>Complemeto</label>
+            </div>
+        </div>
+    </div>
+
+    <h5>Usuário principal</h5>
+    <div class="grid p-fluid" formGroupName="user">
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input
+                    pInputText
+                    type="text"
+                    formControlName="name"
+                    [value]="form.get('user.name')?.value | titlecase" />
+                <label>Nome</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <input pInputText type="text" formControlName="email" />
+                <label>E-mail</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <p-password [feedback]="false" formControlName="password"></p-password>
+                <label>Senha</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <p-password [feedback]="false" formControlName="password2"></p-password>
+                <label>Repetir a Senha</label>
+            </div>
+        </div>
+    </div>
+    <button
+        pButton
+        type="button"
+        (click)="registerCompany()"
+        class="p-button-link p-button-sm"
+        label="Cadastrar"></button>
+</form>

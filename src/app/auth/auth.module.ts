@@ -6,11 +6,13 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterCompanyDialogComponent } from './pages/register-company-dialog/register-company-dialog.component';
 
 @NgModule({
     declarations: [
         MainComponent, //
         LoginComponent,
+        RegisterCompanyDialogComponent,
     ],
     imports: [
         CommonModule, //
