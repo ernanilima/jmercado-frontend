@@ -22,3 +22,12 @@
     font-family: Buda;
     src: url(../../../../assets/fonts/buda_light.ttf);
 }
+
+.ernani-dialog-footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: white;
+    padding: 1rem;
+    text-align: right;
+}

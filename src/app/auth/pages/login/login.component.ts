@@ -53,7 +53,8 @@ export class LoginComponent {
             width: '70%',
             contentStyle: { 'max-height': '500px', overflow: 'auto' },
             baseZIndex: 10000,
-            styleClass: 'dynamicDialog',
+            style: { 'padding-bottom': '65px' },
+            footer: '',
         });
 
         this.ref.onClose.subscribe((result: boolean) => {

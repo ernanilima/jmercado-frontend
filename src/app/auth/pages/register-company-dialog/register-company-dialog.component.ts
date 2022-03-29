@@ -4,6 +4,7 @@ import { ValidatorsService } from 'src/app/shared/validators/validators.service'
 
 @Component({
     templateUrl: './register-company-dialog.component.html',
+    styleUrls: ['./../main/main.component.css'],
 })
 export class RegisterCompanyDialogComponent {
     constructor(

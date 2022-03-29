@@ -187,10 +187,15 @@
             </div>
         </div>
     </div>
-    <button
-        pButton
-        type="button"
-        (click)="registerCompany()"
-        class="p-button-link p-button-sm"
-        label="Cadastrar"></button>
+
+    <div class="ernani-dialog-footer col-12 border-round-bottom">
+        <button
+            pButton
+            pRipple
+            type="button"
+            label="Primary"
+            class="p-button-text"
+            label="Cadastrar"
+            (click)="registerCompany()"></button>
+    </div>
 </form>
