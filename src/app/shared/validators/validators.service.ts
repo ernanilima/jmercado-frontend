@@ -9,4 +9,9 @@ export abstract class ValidatorsService {
     public static get emailPattern(): ValidatorFn {
         return Validators.pattern(this.emailRegex);
     }
+
+    public static emptyRegex: string = '^\\S+.*$';
+    public static get emptyPattern(): ValidatorFn {
+        return Validators.pattern(this.emptyRegex);
+    }
 }

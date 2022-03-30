@@ -21,11 +21,21 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
         return this.fb.group({
             companyName: [
                 '',
-                [Validators.required, Validators.minLength(8), Validators.maxLength(50)],
+                [
+                    Validators.required,
+                    Validators.minLength(8),
+                    Validators.maxLength(50),
+                    ValidatorsService.emptyPattern,
+                ],
             ],
             tradingName: [
                 '',
-                [Validators.required, Validators.minLength(8), Validators.maxLength(50)],
+                [
+                    Validators.required,
+                    Validators.minLength(8),
+                    Validators.maxLength(50),
+                    ValidatorsService.emptyPattern,
+                ],
             ],
             ein: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
             email: ['', [Validators.required, ValidatorsService.emailPattern]],
@@ -39,18 +49,23 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                     '',
                     [Validators.required, Validators.minLength(8), Validators.maxLength(8)],
                 ],
-                country: ['', Validators.required],
-                state: ['', Validators.required],
-                city: ['', Validators.required],
-                district: ['', Validators.required],
-                street: ['', Validators.required],
-                number: ['', Validators.required],
+                country: ['', [Validators.required, ValidatorsService.emptyPattern]],
+                state: ['', [Validators.required, ValidatorsService.emptyPattern]],
+                city: ['', [Validators.required, ValidatorsService.emptyPattern]],
+                district: ['', [Validators.required, ValidatorsService.emptyPattern]],
+                street: ['', [Validators.required, ValidatorsService.emptyPattern]],
+                number: ['', [Validators.required, ValidatorsService.emptyPattern]],
                 complement: [''],
             }),
             user: this.fb.group({
                 name: [
                     '',
-                    [Validators.required, Validators.minLength(8), Validators.maxLength(50)],
+                    [
+                        Validators.required,
+                        Validators.minLength(8),
+                        Validators.maxLength(50),
+                        ValidatorsService.emptyPattern,
+                    ],
                 ],
                 email: ['', [Validators.required, ValidatorsService.emailPattern]],
                 password: [
