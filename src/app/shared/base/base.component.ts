@@ -15,8 +15,8 @@ export class BaseComponent {
      * @param field string
      * @returns boolean | null
      */
-    public validateField(field: string): boolean | null {
-        return this.form.controls[field].errors && this.form.controls[field].touched;
+    public validateField(field: string): boolean | undefined {
+        return this.form.get(field)?.errors !== null && this.form.get(field)?.touched;
     }
 
     /**

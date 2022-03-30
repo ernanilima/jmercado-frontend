@@ -23,10 +23,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.form = this.newForm();
+        this.form = this.getNewForm();
     }
 
-    private newForm(): FormGroup {
+    private getNewForm(): FormGroup {
         return this.fb.group({
             companyEin: [
                 '',

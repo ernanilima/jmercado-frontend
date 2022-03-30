@@ -10,6 +10,9 @@
                     [value]="form.get('companyName')?.value | titlecase" />
                 <label>Razão social</label>
             </div>
+            <small class="p-error" *ngIf="validateField('companyName')">
+                {{ getErrorMessage('companyName') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -20,6 +23,9 @@
                     [value]="form.get('tradingName')?.value | titlecase" />
                 <label>Nome Fantasia</label>
             </div>
+            <small class="p-error" *ngIf="validateField('tradingName')">
+                {{ getErrorMessage('tradingName') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <span class="p-float-label">
@@ -30,12 +36,18 @@
                     formControlName="ein"></p-inputMask>
                 <label>CNPJ</label>
             </span>
+            <small class="p-error" *ngIf="validateField('ein')">
+                {{ getErrorMessage('ein') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
                 <input pInputText type="text" formControlName="email" />
                 <label>E-mail</label>
             </div>
+            <small class="p-error" *ngIf="validateField('email')">
+                {{ getErrorMessage('email') }}
+            </small>
         </div>
 
         <div class="col-12 md:col-6" formGroupName="telephone">
@@ -47,6 +59,9 @@
                     formControlName="telephone"></p-inputMask>
                 <label>Telefone</label>
             </div>
+            <small class="p-error" *ngIf="validateField('telephone.telephone')">
+                {{ getErrorMessage('telephone.telephone') }}
+            </small>
         </div>
         <div class="col-12 md:col-6" formGroupName="telephone">
             <div class="p-inputgroup">
@@ -69,6 +84,9 @@
                     <i class="pi pi-whatsapp" style="line-height: 1.25"></i>
                 </span>
             </div>
+            <small class="p-error" *ngIf="validateField('telephone.cellPhone')">
+                {{ getErrorMessage('telephone.cellPhone') }}
+            </small>
         </div>
     </div>
 
@@ -83,6 +101,9 @@
                     formControlName="zipCode"></p-inputMask>
                 <label>CEP</label>
             </span>
+            <small class="p-error" *ngIf="validateField('address.zipCode')">
+                {{ getErrorMessage('address.zipCode') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -93,6 +114,9 @@
                     [value]="form.get('address.country')?.value | titlecase" />
                 <label>País</label>
             </div>
+            <small class="p-error" *ngIf="validateField('address.country')">
+                {{ getErrorMessage('address.country') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -103,6 +127,9 @@
                     [value]="form.get('address.state')?.value | titlecase" />
                 <label>Estado</label>
             </div>
+            <small class="p-error" *ngIf="validateField('address.state')">
+                {{ getErrorMessage('address.state') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -113,6 +140,9 @@
                     [value]="form.get('address.city')?.value | titlecase" />
                 <label>Cidade</label>
             </div>
+            <small class="p-error" *ngIf="validateField('address.city')">
+                {{ getErrorMessage('address.city') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -123,6 +153,9 @@
                     [value]="form.get('address.district')?.value | titlecase" />
                 <label>Bairro</label>
             </div>
+            <small class="p-error" *ngIf="validateField('address.district')">
+                {{ getErrorMessage('address.district') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -133,6 +166,9 @@
                     [value]="form.get('address.street')?.value | titlecase" />
                 <label>Logradouro</label>
             </div>
+            <small class="p-error" *ngIf="validateField('address.street')">
+                {{ getErrorMessage('address.street') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -143,6 +179,9 @@
                     [value]="form.get('address.number')?.value | titlecase" />
                 <label>Número</label>
             </div>
+            <small class="p-error" *ngIf="validateField('address.number')">
+                {{ getErrorMessage('address.number') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
@@ -167,24 +206,36 @@
                     [value]="form.get('user.name')?.value | titlecase" />
                 <label>Nome</label>
             </div>
+            <small class="p-error" *ngIf="validateField('user.name')">
+                {{ getErrorMessage('user.name') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
                 <input pInputText type="text" formControlName="email" />
                 <label>E-mail</label>
             </div>
+            <small class="p-error" *ngIf="validateField('user.email')">
+                {{ getErrorMessage('user.email') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
                 <p-password [feedback]="false" formControlName="password"></p-password>
                 <label>Senha</label>
             </div>
+            <small class="p-error" *ngIf="validateField('user.password')">
+                {{ getErrorMessage('user.password') }}
+            </small>
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
                 <p-password [feedback]="false" formControlName="password2"></p-password>
                 <label>Repetir a Senha</label>
             </div>
+            <small class="p-error" *ngIf="validateField('user.password2')">
+                {{ getErrorMessage('user.password2') }}
+            </small>
         </div>
     </div>
 
