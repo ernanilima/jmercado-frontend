@@ -57,26 +57,32 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                 number: ['', [Validators.required, ValidatorsService.emptyPattern]],
                 complement: [''],
             }),
-            user: this.fb.group({
-                name: [
-                    '',
-                    [
-                        Validators.required,
-                        Validators.minLength(8),
-                        Validators.maxLength(50),
-                        ValidatorsService.emptyPattern,
+            user: this.fb.group(
+                {
+                    name: [
+                        '',
+                        [
+                            Validators.required,
+                            Validators.minLength(8),
+                            Validators.maxLength(50),
+                            ValidatorsService.emptyPattern,
+                        ],
                     ],
-                ],
-                email: ['', [Validators.required, ValidatorsService.emailPattern]],
-                password: [
-                    '',
-                    [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
-                ],
-                password2: [
-                    '',
-                    [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
-                ],
-            }),
+                    email: ['', [Validators.required, ValidatorsService.emailPattern]],
+                    password: [
+                        '',
+                        [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
+                    ],
+                    password2: [
+                        '',
+                        [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
+                    ],
+                },
+                {
+                    // validacao personalizada, necessario se chamar 'validators'
+                    validators: [ValidatorsService.passwordMatch('password', 'password2')],
+                }
+            ),
         });
     }
 

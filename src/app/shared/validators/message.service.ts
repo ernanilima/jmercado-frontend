@@ -28,6 +28,8 @@ export abstract class MessageService {
             error?.['pattern']['requiredPattern'] === ValidatorsService.emailRegex
         ) {
             return 'Formato de e-mail inválido';
+        } else if (error?.['passwordDontMatch']) {
+            return 'Senhas não combinam';
         } else {
             return '';
         }
