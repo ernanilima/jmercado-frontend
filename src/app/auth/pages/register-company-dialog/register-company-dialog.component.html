@@ -221,7 +221,10 @@
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
-                <p-password [feedback]="false" formControlName="password"></p-password>
+                <p-password
+                    [feedback]="false"
+                    formControlName="password"
+                    [toggleMask]="form.get('user.password')!.touched"></p-password>
                 <label>Senha</label>
             </div>
             <small class="p-error" *ngIf="validateField('user.password')">
@@ -230,7 +233,10 @@
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
-                <p-password [feedback]="false" formControlName="password2"></p-password>
+                <p-password
+                    [feedback]="false"
+                    formControlName="password2"
+                    [toggleMask]="form.get('user.password2')!.touched"></p-password>
                 <label>Repetir a Senha</label>
             </div>
             <small class="p-error" *ngIf="validateField('user.password2')">
