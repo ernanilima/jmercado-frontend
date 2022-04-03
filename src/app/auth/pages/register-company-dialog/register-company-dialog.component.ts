@@ -4,7 +4,7 @@ import { ValidatorsService } from 'src/app/shared/validators/validators.service'
 import { BaseComponent } from 'src/app/shared/base/base.component';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { CompanyDto } from 'src/app/auth/interfaces/company.dto';
-import { switchMap } from 'rxjs';
+import { finalize, switchMap } from 'rxjs';
 import { CompanyService } from 'src/app/auth/services/company.service';
 
 @Component({
@@ -12,6 +12,8 @@ import { CompanyService } from 'src/app/auth/services/company.service';
     styleUrls: ['./../main/main.component.css'],
 })
 export class RegisterCompanyDialogComponent extends BaseComponent implements OnInit {
+    public loadingVisible: boolean = false;
+
     constructor(
         private fb: FormBuilder, //
         private companyService: CompanyService,
@@ -95,11 +97,15 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
 
     public registerCompany(): void {
         if (this.validateForm()) {
+            this.loadingVisible = true;
             this.recaptchaV3Service
                 .execute('importantAction')
                 .pipe(
                     switchMap((token: string) => {
                         return this.companyService.registerCompany(this.getCompanyDto(), token);
+                    }),
+                    finalize(() => {
+                        this.loadingVisible = false;
                     })
                 )
                 .subscribe((result) => {

@@ -15,6 +15,7 @@ import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 import { PanelModule } from 'primeng/panel';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TreeTableModule } from 'primeng/treetable';
@@ -36,6 +37,7 @@ import { InputMaskModule } from 'primeng/inputmask';
         MessageModule,
         PanelModule,
         PasswordModule,
+        ProgressSpinnerModule,
         ToastModule,
         TriStateCheckboxModule,
     ],

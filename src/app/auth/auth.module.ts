@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterCompanyDialogComponent } from './pages/register-company-dialog/register-company-dialog.component';
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { environment } from 'src/environments/environment';
         CommonModule, //
         AuthRoutingModule,
         PrimeNgModule,
+        SharedModule,
         ReactiveFormsModule,
         RecaptchaV3Module,
     ],
