@@ -2,6 +2,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ValidatorsService } from 'src/app/shared/validators/validators.service';
 import { BaseComponent } from 'src/app/shared/base/base.component';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { CompanyDto } from 'src/app/auth/interfaces/company.dto';
+import { switchMap } from 'rxjs';
+import { CompanyService } from 'src/app/auth/services/company.service';
 
 @Component({
     templateUrl: './register-company-dialog.component.html',
@@ -9,10 +13,13 @@ import { BaseComponent } from 'src/app/shared/base/base.component';
 })
 export class RegisterCompanyDialogComponent extends BaseComponent implements OnInit {
     constructor(
-        private fb: FormBuilder //
+        private fb: FormBuilder, //
+        private companyService: CompanyService,
+        private recaptchaV3Service: ReCaptchaV3Service
     ) {
         super();
     }
+
     ngOnInit(): void {
         this.form = this.getNewForm();
     }
@@ -40,8 +47,8 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
             ein: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
             email: ['', [Validators.required, ValidatorsService.emailPattern]],
             telephone: this.fb.group({
-                telephone: ['', [Validators.minLength(10), Validators.maxLength(15)]],
-                cellPhone: ['', [Validators.minLength(11), Validators.maxLength(15)]],
+                telephone: [null, [Validators.minLength(10), Validators.maxLength(15)]],
+                cellPhone: [null, [Validators.minLength(11), Validators.maxLength(15)]],
                 whatsappCellPhone: [false],
             }),
             address: this.fb.group({
@@ -87,6 +94,30 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     }
 
     public registerCompany(): void {
-        if (this.validateForm()) console.log(this.form.getRawValue());
+        if (this.validateForm()) {
+            this.recaptchaV3Service
+                .execute('importantAction')
+                .pipe(
+                    switchMap((token: string) => {
+                        return this.companyService.registerCompany(this.getCompanyDto(), token);
+                    })
+                )
+                .subscribe((result) => {
+                    console.log(result);
+                });
+        }
+    }
+
+    private getCompanyDto(): CompanyDto {
+        const telephone = this.form.get('telephone.telephone')?.value;
+        const cellPhone = this.form.get('telephone.cellPhone')?.value;
+        // atribui nulo caso o telefone nao seja informado
+        // evita que o backend realize as validacoes de tamanho
+        this.form.get('telephone')?.patchValue({
+            telephone: telephone ? telephone : null,
+            cellPhone: cellPhone ? cellPhone : null,
+        });
+
+        return this.form.getRawValue();
     }
 }

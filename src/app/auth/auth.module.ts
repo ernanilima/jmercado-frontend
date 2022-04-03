@@ -7,6 +7,8 @@ import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterCompanyDialogComponent } from './pages/register-company-dialog/register-company-dialog.component';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     declarations: [
@@ -19,6 +21,13 @@ import { RegisterCompanyDialogComponent } from './pages/register-company-dialog/
         AuthRoutingModule,
         PrimeNgModule,
         ReactiveFormsModule,
+        RecaptchaV3Module,
+    ],
+    providers: [
+        {
+            provide: RECAPTCHA_V3_SITE_KEY,
+            useValue: environment.recaptcha.siteKey,
+        },
     ],
 })
 export class AuthModule {}
