@@ -8,6 +8,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessagesModule } from 'primeng/messages';
@@ -30,6 +31,7 @@ import { InputMaskModule } from 'primeng/inputmask';
         DialogModule,
         DividerModule,
         DynamicDialogModule,
+        DropdownModule,
         InputTextModule,
         InputNumberModule,
         InputMaskModule,

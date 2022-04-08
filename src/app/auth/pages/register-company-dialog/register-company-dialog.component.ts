@@ -6,6 +6,9 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { CompanyDto } from 'src/app/auth/interfaces/company.dto';
 import { finalize, switchMap } from 'rxjs';
 import { CompanyService } from 'src/app/auth/services/company.service';
+import { CountryDto } from 'src/app/shared/interfaces/country.dto';
+import { StateDto } from 'src/app/shared/interfaces/state.dto';
+import { CityDto } from 'src/app/shared/interfaces/city.dto';
 
 @Component({
     templateUrl: './register-company-dialog.component.html',
@@ -13,6 +16,9 @@ import { CompanyService } from 'src/app/auth/services/company.service';
 })
 export class RegisterCompanyDialogComponent extends BaseComponent implements OnInit {
     public loadingVisible: boolean = false;
+    public countries: CountryDto[];
+    public states: StateDto[];
+    public cities: CityDto[];
 
     constructor(
         private fb: FormBuilder, //
@@ -24,6 +30,27 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
 
     ngOnInit(): void {
         this.form = this.getNewForm();
+        this.countries = [{ description: 'Brasil', acronym: 'BR', code: '1058' }];
+        this.states = [
+            { description: 'Pará', acronym: 'PA', code: '15', country: '1058', region: 'NORTE' },
+            { description: 'Paraná', acronym: 'PR', code: '41', country: '1058', region: 'SUL' },
+        ];
+        this.cities = [
+            {
+                description: 'Belém',
+                code: '1501402',
+                state: 'PA',
+                country: '1058',
+                region: 'NORTE',
+            },
+            {
+                description: 'Curitiba',
+                code: '4106902',
+                state: 'PR',
+                country: '1058',
+                region: 'SUL',
+            },
+        ];
     }
 
     private getNewForm(): FormGroup {
@@ -58,9 +85,9 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                     '',
                     [Validators.required, Validators.minLength(8), Validators.maxLength(8)],
                 ],
-                country: ['', [Validators.required, ValidatorsService.emptyPattern]],
-                state: ['', [Validators.required, ValidatorsService.emptyPattern]],
-                city: ['', [Validators.required, ValidatorsService.emptyPattern]],
+                country: [null, Validators.required],
+                state: [null, Validators.required],
+                city: [null, Validators.required],
                 district: ['', [Validators.required, ValidatorsService.emptyPattern]],
                 street: ['', [Validators.required, ValidatorsService.emptyPattern]],
                 number: ['', [Validators.required, ValidatorsService.emptyPattern]],

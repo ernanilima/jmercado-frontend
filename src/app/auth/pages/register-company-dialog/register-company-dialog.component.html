@@ -109,11 +109,13 @@
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="country"
-                    [value]="form.get('address.country')?.value | titlecase" />
+                <p-dropdown
+                    [options]="countries"
+                    [autoDisplayFirst]="false"
+                    [showClear]="true"
+                    optionLabel="description"
+                    optionValue="code"
+                    formControlName="country"></p-dropdown>
                 <label>País</label>
             </div>
             <small class="p-error" *ngIf="validateField('address.country')">
@@ -122,11 +124,13 @@
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="state"
-                    [value]="form.get('address.state')?.value | titlecase" />
+                <p-dropdown
+                    [options]="states"
+                    [autoDisplayFirst]="false"
+                    [showClear]="true"
+                    optionLabel="description"
+                    optionValue="code"
+                    formControlName="state"></p-dropdown>
                 <label>Estado</label>
             </div>
             <small class="p-error" *ngIf="validateField('address.state')">
@@ -135,11 +139,13 @@
         </div>
         <div class="col-12 md:col-6">
             <div class="p-float-label">
-                <input
-                    pInputText
-                    type="text"
-                    formControlName="city"
-                    [value]="form.get('address.city')?.value | titlecase" />
+                <p-dropdown
+                    [options]="cities"
+                    [autoDisplayFirst]="false"
+                    [showClear]="true"
+                    optionLabel="description"
+                    optionValue="code"
+                    formControlName="city"></p-dropdown>
                 <label>Cidade</label>
             </div>
             <small class="p-error" *ngIf="validateField('address.city')">
