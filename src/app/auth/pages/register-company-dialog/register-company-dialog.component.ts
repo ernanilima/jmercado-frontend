@@ -6,6 +6,7 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { CompanyDto } from 'src/app/auth/interfaces/company.dto';
 import { finalize, switchMap } from 'rxjs';
 import { CompanyService } from 'src/app/auth/services/company.service';
+import { AddressService } from 'src/app/shared/services/address.service';
 import { CountryDto } from 'src/app/shared/interfaces/country.dto';
 import { StateDto } from 'src/app/shared/interfaces/state.dto';
 import { CityDto } from 'src/app/shared/interfaces/city.dto';
@@ -23,34 +24,35 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     constructor(
         private fb: FormBuilder, //
         private companyService: CompanyService,
-        private recaptchaV3Service: ReCaptchaV3Service
+        private recaptchaV3Service: ReCaptchaV3Service,
+        private AddressService: AddressService
     ) {
         super();
     }
 
     ngOnInit(): void {
         this.form = this.getNewForm();
-        this.countries = [{ description: 'Brasil', acronym: 'BR', code: '1058' }];
-        this.states = [
-            { description: 'Pará', acronym: 'PA', code: '15', country: '1058', region: 'NORTE' },
-            { description: 'Paraná', acronym: 'PR', code: '41', country: '1058', region: 'SUL' },
-        ];
-        this.cities = [
-            {
-                description: 'Belém',
-                code: '1501402',
-                state: 'PA',
-                country: '1058',
-                region: 'NORTE',
-            },
-            {
-                description: 'Curitiba',
-                code: '4106902',
-                state: 'PR',
-                country: '1058',
-                region: 'SUL',
-            },
-        ];
+
+        this.AddressService.getCountries().subscribe((value: CountryDto[]) => {
+            this.countries = value;
+        });
+
+        this.form
+            .get(['address', 'country'])!
+            .valueChanges.pipe(
+                switchMap((value1) => {
+                    console.log('primeiro', value1);
+                    this.loadingVisible = true;
+                    return value1 ? this.AddressService.getStates(value1) : value1;
+                }),
+                finalize(() => {
+                    this.loadingVisible = false;
+                })
+            )
+            .subscribe((value) => {
+                console.log('segundo', value);
+                // this.states = value;
+            });
     }
 
     private getNewForm(): FormGroup {
