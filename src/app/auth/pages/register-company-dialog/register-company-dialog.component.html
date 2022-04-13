@@ -115,7 +115,8 @@
                     [showClear]="true"
                     optionLabel="description"
                     optionValue="code"
-                    formControlName="country"></p-dropdown>
+                    formControlName="country"
+                    (onChange)="changeCountries($event.value)"></p-dropdown>
                 <label>País</label>
             </div>
             <small class="p-error" *ngIf="validateField('address.country')">

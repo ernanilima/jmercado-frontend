@@ -33,26 +33,7 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     ngOnInit(): void {
         this.form = this.getNewForm();
 
-        this.AddressService.getCountries().subscribe((value: CountryDto[]) => {
-            this.countries = value;
-        });
-
-        this.form
-            .get(['address', 'country'])!
-            .valueChanges.pipe(
-                switchMap((value1) => {
-                    console.log('primeiro', value1);
-                    this.loadingVisible = true;
-                    return value1 ? this.AddressService.getStates(value1) : value1;
-                }),
-                finalize(() => {
-                    this.loadingVisible = false;
-                })
-            )
-            .subscribe((value) => {
-                console.log('segundo', value);
-                // this.states = value;
-            });
+        this.getCountries();
     }
 
     private getNewForm(): FormGroup {
@@ -122,6 +103,30 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                 }
             ),
         });
+    }
+
+    private getCountries(): void {
+        this.AddressService.getCountries().subscribe((value: CountryDto[]) => {
+            this.countries = value;
+        });
+    }
+
+    public changeCountries(codeCountry: string): void {
+        if (codeCountry) {
+            this.loadingVisible = true;
+            this.AddressService.getStates(codeCountry)
+                .pipe(
+                    finalize(() => {
+                        this.loadingVisible = false;
+                    })
+                )
+                .subscribe((states: StateDto[]) => {
+                    this.states = states;
+                });
+        } else {
+            this.states = [];
+            this.form.get(['address', 'state'])?.patchValue(null);
+        }
     }
 
     public registerCompany(): void {
