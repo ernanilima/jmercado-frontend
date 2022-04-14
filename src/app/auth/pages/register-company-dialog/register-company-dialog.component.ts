@@ -8,6 +8,7 @@ import { finalize, switchMap } from 'rxjs';
 import { CompanyService } from 'src/app/auth/services/company.service';
 import { AddressService } from 'src/app/shared/services/address.service';
 import { CountryDto } from 'src/app/shared/interfaces/country.dto';
+import { RegionDto } from 'src/app/shared/interfaces/region.dto';
 import { StateDto } from 'src/app/shared/interfaces/state.dto';
 import { CityDto } from 'src/app/shared/interfaces/city.dto';
 
@@ -18,6 +19,7 @@ import { CityDto } from 'src/app/shared/interfaces/city.dto';
 export class RegisterCompanyDialogComponent extends BaseComponent implements OnInit {
     public loadingVisible: boolean = false;
     public countries: CountryDto[];
+    public regions: RegionDto[];
     public states: StateDto[];
     public cities: CityDto[];
 
@@ -69,6 +71,7 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                     [Validators.required, Validators.minLength(8), Validators.maxLength(8)],
                 ],
                 country: [null, Validators.required],
+                region: [null],
                 state: [null, Validators.required],
                 city: [null, Validators.required],
                 district: ['', [Validators.required, ValidatorsService.emptyPattern]],
@@ -123,9 +126,21 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                 .subscribe((states: StateDto[]) => {
                     this.states = states;
                 });
+
+            this.AddressService.getRegions(codeCountry)
+                .pipe(
+                    finalize(() => {
+                        this.loadingVisible = false;
+                    })
+                )
+                .subscribe((regions: RegionDto[]) => {
+                    this.regions = regions;
+                });
         } else {
             this.states = [];
             this.form.get(['address', 'state'])?.patchValue(null);
+            this.regions = [];
+            this.form.get(['address', 'region'])?.patchValue(null);
         }
     }
 

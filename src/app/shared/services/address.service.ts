@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CountryDto } from '../interfaces/country.dto';
 import { StateDto } from '../interfaces/state.dto';
+import { RegionDto } from '../interfaces/region.dto';
 
 @Injectable({
     providedIn: 'root',
@@ -19,6 +20,17 @@ export class AddressService {
      */
     public getCountries(): Observable<CountryDto[]> {
         return this.http.get<CountryDto[]>(`${environment.urlBackend}/endereco/pais`);
+    }
+
+    /**
+     * Buscar todas as regioes do pais
+     * @param codeCountry string
+     * @returns Observable<RegionDto[]>
+     */
+    public getRegions(codeCountry: string): Observable<RegionDto[]> {
+        return this.http.get<RegionDto[]>(
+            `${environment.urlBackend}/endereco/regiao/${codeCountry}`
+        );
     }
 
     /**

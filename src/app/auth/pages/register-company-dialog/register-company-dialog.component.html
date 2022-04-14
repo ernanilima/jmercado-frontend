@@ -126,6 +126,18 @@
         <div class="col-12 md:col-6">
             <div class="p-float-label">
                 <p-dropdown
+                    [options]="regions"
+                    [autoDisplayFirst]="false"
+                    [showClear]="true"
+                    optionLabel="description"
+                    optionValue="value"
+                    formControlName="region"></p-dropdown>
+                <label>Região</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="p-float-label">
+                <p-dropdown
                     [options]="states"
                     [autoDisplayFirst]="false"
                     [showClear]="true"
@@ -138,7 +150,7 @@
                 {{ getErrorMessage('address.state') }}
             </small>
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12">
             <div class="p-float-label">
                 <p-dropdown
                     [options]="cities"
