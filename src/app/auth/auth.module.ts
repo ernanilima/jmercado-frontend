@@ -13,12 +13,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
     declarations: [
-        MainComponent, //
+        MainComponent,
         LoginComponent,
         RegisterCompanyDialogComponent,
     ],
     imports: [
-        CommonModule, //
+        CommonModule,
         AuthRoutingModule,
         PrimeNgModule,
         SharedModule,
@@ -32,4 +32,4 @@ import { SharedModule } from 'src/app/shared/shared.module';
         },
     ],
 })
-export class AuthModule {}
+export class AuthModule { }

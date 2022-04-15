@@ -18,7 +18,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        BrowserModule, //
+        BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
@@ -33,8 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         }),
     ],
     providers: [
-        ResponseStatusInterceptorProvider, //
+        ResponseStatusInterceptorProvider,
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

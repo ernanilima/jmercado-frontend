@@ -25,7 +25,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
     exports: [
-        ButtonModule, //
+        ButtonModule,
         CardModule,
         CheckboxModule,
         DialogModule,
@@ -44,10 +44,10 @@ import { InputMaskModule } from 'primeng/inputmask';
         TriStateCheckboxModule,
     ],
     providers: [
-        ConfirmationService, //
+        ConfirmationService,
         MessageService,
     ],
 })
-export class PrimeNgModule {}
+export class PrimeNgModule { }
 // usado apenas para agrupar as importacoes do primeng
 // os modulos devem ser exportados para serem usado

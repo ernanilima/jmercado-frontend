@@ -11,9 +11,10 @@ import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class ResponseStatusInterceptor implements HttpInterceptor {
+
     constructor(
-        private messageService: MessageService //
-    ) {}
+        private messageService: MessageService
+    ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // return next.handle(request);

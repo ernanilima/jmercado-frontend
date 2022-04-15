@@ -11,15 +11,17 @@ import { RegionDto } from '../interfaces/region.dto';
 })
 export class AddressService {
     constructor(
-        private http: HttpClient //
-    ) {}
+        private http: HttpClient
+    ) { }
 
     /**
      * Buscar todos os paises
      * @returns Observable<CountryDto[]>
      */
     public getCountries(): Observable<CountryDto[]> {
-        return this.http.get<CountryDto[]>(`${environment.urlBackend}/endereco/pais`);
+        return this.http.get<CountryDto[]>(
+            `${environment.urlBackend}/endereco/pais`
+        );
     }
 
     /**
@@ -42,8 +44,9 @@ export class AddressService {
     public getStates(key: string, value: string): Observable<StateDto[]> {
         let httpParams = new HttpParams();
         httpParams = httpParams.append(key, value);
-        return this.http.get<StateDto[]>(`${environment.urlBackend}/endereco/estado`, {
-            params: httpParams,
-        });
+        return this.http.get<StateDto[]>(
+            `${environment.urlBackend}/endereco/estado`,
+            { params: httpParams }
+        );
     }
 }

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
+
     public showStatus: boolean = true;
     public connectionOk: boolean = false;
     public textConnection: string = 'Conectando com o servidor';
@@ -14,8 +15,8 @@ export class MainComponent implements OnInit {
     private interval: ReturnType<typeof setTimeout>;
 
     constructor(
-        private connectionServerService: ConnectionServerService //
-    ) {}
+        private connectionServerService: ConnectionServerService
+    ) { }
 
     ngOnInit(): void {
         // verifica se existe conexao com o servidor
@@ -27,17 +28,19 @@ export class MainComponent implements OnInit {
     }
 
     private connectionServer(): void {
-        this.connectionServerService.getConnectionServer().subscribe((result) => {
-            // para a thread que repete a verificacao
-            clearInterval(this.interval);
+        this.connectionServerService
+            .getConnectionServer()
+            .subscribe((result) => {
+                // para a thread que repete a verificacao
+                clearInterval(this.interval);
 
-            this.connectionOk = true;
-            this.textConnection = result.message;
+                this.connectionOk = true;
+                this.textConnection = result.message;
 
-            // para de exibir o status de comunicacao
-            setTimeout(() => {
-                this.showStatus = false;
-            }, 2000);
-        });
+                // para de exibir o status de comunicacao
+                setTimeout(() => {
+                    this.showStatus = false;
+                }, 2000);
+            });
     }
 }

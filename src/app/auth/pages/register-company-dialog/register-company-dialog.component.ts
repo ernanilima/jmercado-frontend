@@ -17,6 +17,7 @@ import { CityDto } from 'src/app/shared/interfaces/city.dto';
     styleUrls: ['./../main/main.component.css'],
 })
 export class RegisterCompanyDialogComponent extends BaseComponent implements OnInit {
+
     public loadingVisible: boolean = false;
     public countries: CountryDto[];
     public regions: RegionDto[];
@@ -24,7 +25,7 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     public cities: CityDto[];
 
     constructor(
-        private fb: FormBuilder, //
+        private fb: FormBuilder,
         private companyService: CompanyService,
         private recaptchaV3Service: ReCaptchaV3Service,
         private AddressService: AddressService
@@ -40,24 +41,8 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
 
     private getNewForm(): FormGroup {
         return this.fb.group({
-            companyName: [
-                '',
-                [
-                    Validators.required,
-                    Validators.minLength(8),
-                    Validators.maxLength(50),
-                    ValidatorsService.emptyPattern,
-                ],
-            ],
-            tradingName: [
-                '',
-                [
-                    Validators.required,
-                    Validators.minLength(8),
-                    Validators.maxLength(50),
-                    ValidatorsService.emptyPattern,
-                ],
-            ],
+            companyName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50), ValidatorsService.emptyPattern]],
+            tradingName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50), ValidatorsService.emptyPattern]],
             ein: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
             email: ['', [Validators.required, ValidatorsService.emailPattern]],
             telephone: this.fb.group({
@@ -66,10 +51,7 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                 whatsappCellPhone: [false],
             }),
             address: this.fb.group({
-                zipCode: [
-                    '',
-                    [Validators.required, Validators.minLength(8), Validators.maxLength(8)],
-                ],
+                zipCode: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
                 country: [null, Validators.required],
                 region: [null],
                 state: [null, Validators.required],
@@ -81,24 +63,10 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
             }),
             user: this.fb.group(
                 {
-                    name: [
-                        '',
-                        [
-                            Validators.required,
-                            Validators.minLength(8),
-                            Validators.maxLength(50),
-                            ValidatorsService.emptyPattern,
-                        ],
-                    ],
+                    name: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50), ValidatorsService.emptyPattern]],
                     email: ['', [Validators.required, ValidatorsService.emailPattern]],
-                    password: [
-                        '',
-                        [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
-                    ],
-                    password2: [
-                        '',
-                        [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
-                    ],
+                    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+                    password2: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
                 },
                 {
                     // validacao personalizada, necessario se chamar 'validators'
@@ -109,15 +77,18 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     }
 
     private getCountries(): void {
-        this.AddressService.getCountries().subscribe((value: CountryDto[]) => {
-            this.countries = value;
-        });
+        this.AddressService
+            .getCountries()
+            .subscribe((value: CountryDto[]) => {
+                this.countries = value;
+            });
     }
 
     public changeCountries(codeCountry: string): void {
         if (codeCountry) {
             this.loadingVisible = true;
-            this.AddressService.getStates('pais', codeCountry)
+            this.AddressService
+                .getStates('pais', codeCountry)
                 .pipe(
                     finalize(() => {
                         this.loadingVisible = false;
@@ -127,7 +98,8 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                     this.states = states;
                 });
 
-            this.AddressService.getRegions(codeCountry)
+            this.AddressService
+                .getRegions(codeCountry)
                 .pipe(
                     finalize(() => {
                         this.loadingVisible = false;
@@ -147,9 +119,11 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     public changeRegions(region: string): void {
         if (region) {
             this.loadingVisible = true;
-            this.AddressService.getStates('regiao', region)
+            this.AddressService
+                .getStates('regiao', region)
                 .pipe(
                     finalize(() => {
+
                         this.loadingVisible = false;
                     })
                 )

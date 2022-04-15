@@ -12,7 +12,7 @@ import { LoginDto } from '../interfaces/login.dto';
 export class AuthService {
     constructor(
         private http: HttpClient //
-    ) {}
+    ) { }
 
     /**
      * Realizar o login

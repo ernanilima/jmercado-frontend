@@ -6,16 +6,16 @@ import { PrimeNgModule } from 'src/app/prime-ng/prime-ng/prime-ng.module';
 
 @NgModule({
     declarations: [
-        BaseComponent, //
+        BaseComponent,
         LoadingComponent,
     ],
     exports: [
-        BaseComponent, //
+        BaseComponent,
         LoadingComponent,
     ],
     imports: [
-        CommonModule, //
+        CommonModule,
         PrimeNgModule,
     ],
 })
-export class SharedModule {}
+export class SharedModule { }

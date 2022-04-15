@@ -8,6 +8,7 @@ import { MessageService } from '../validators/message.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent {
+
     public form: FormGroup;
 
     /**

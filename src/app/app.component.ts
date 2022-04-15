@@ -8,10 +8,11 @@ import { PrimeNGConfig } from 'primeng/api';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+
     constructor(
-        private config: PrimeNGConfig, //
+        private config: PrimeNGConfig,
         private translateService: TranslateService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.translateService.setDefaultLang('pt-BR');

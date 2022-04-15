@@ -10,7 +10,7 @@ import { CompanyDto } from 'src/app/auth/interfaces/company.dto';
 export class CompanyService {
     constructor(
         private http: HttpClient //
-    ) {}
+    ) { }
 
     public registerCompany(
         companyDto: CompanyDto,

@@ -5,10 +5,8 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export abstract class ValidatorsService {
-    public static passwordMatch(
-        field1: string,
-        field2: string
-    ): (form: AbstractControl) => ValidationErrors {
+
+    public static passwordMatch(field1: string, field2: string): (form: AbstractControl) => ValidationErrors {
         return (form: AbstractControl): ValidationErrors => {
             if (
                 !form.get(field1)?.errors &&

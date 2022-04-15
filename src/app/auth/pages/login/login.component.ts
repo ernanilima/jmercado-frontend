@@ -12,10 +12,11 @@ import { BaseComponent } from 'src/app/shared/base/base.component';
     providers: [DialogService],
 })
 export class LoginComponent extends BaseComponent implements OnInit {
+
     private ref: DynamicDialogRef;
 
     constructor(
-        private fb: FormBuilder, //
+        private fb: FormBuilder,
         private authService: AuthService,
         private dialogService: DialogService
     ) {
@@ -28,23 +29,19 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
     private getNewForm(): FormGroup {
         return this.fb.group({
-            companyEin: [
-                '',
-                [Validators.required, Validators.minLength(14), Validators.maxLength(14)],
-            ],
+            companyEin: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
             email: ['', [Validators.required, ValidatorsService.emailPattern]],
-            password: [
-                '',
-                [Validators.required, Validators.minLength(6), Validators.maxLength(15)],
-            ],
+            password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
         });
     }
 
     public login(): void {
         if (this.validateForm())
-            this.authService.authentication(this.form.value).subscribe((result) => {
-                console.log(result);
-            });
+            this.authService
+                .authentication(this.form.value)
+                .subscribe((result) => {
+                    console.log(result);
+                });
     }
 
     public registerCompany(): void {
