@@ -131,7 +131,8 @@
                     [showClear]="true"
                     optionLabel="description"
                     optionValue="value"
-                    formControlName="region"></p-dropdown>
+                    formControlName="region"
+                    (onChange)="changeRegions($event.value)"></p-dropdown>
                 <label>Região</label>
             </div>
         </div>

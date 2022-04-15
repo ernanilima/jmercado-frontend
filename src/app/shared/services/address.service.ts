@@ -34,13 +34,14 @@ export class AddressService {
     }
 
     /**
-     * Buscar todos os estados com base no codigo(ibge) do pais
-     * @param codeCountry string
+     * Buscar todos os estados com base na chave e valor da chave
+     * @param key string - pais | regiao
+     * @param value string
      * @returns Observable<StateDto[]>
      */
-    public getStates(codeCountry: string): Observable<StateDto[]> {
+    public getStates(key: string, value: string): Observable<StateDto[]> {
         let httpParams = new HttpParams();
-        httpParams = httpParams.append('pais', codeCountry);
+        httpParams = httpParams.append(key, value);
         return this.http.get<StateDto[]>(`${environment.urlBackend}/endereco/estado`, {
             params: httpParams,
         });

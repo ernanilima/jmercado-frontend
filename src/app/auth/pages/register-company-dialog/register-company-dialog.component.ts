@@ -117,7 +117,7 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
     public changeCountries(codeCountry: string): void {
         if (codeCountry) {
             this.loadingVisible = true;
-            this.AddressService.getStates(codeCountry)
+            this.AddressService.getStates('pais', codeCountry)
                 .pipe(
                     finalize(() => {
                         this.loadingVisible = false;
@@ -137,10 +137,29 @@ export class RegisterCompanyDialogComponent extends BaseComponent implements OnI
                     this.regions = regions;
                 });
         } else {
-            this.states = [];
-            this.form.get(['address', 'state'])?.patchValue(null);
             this.regions = [];
             this.form.get(['address', 'region'])?.patchValue(null);
+            this.states = [];
+            this.form.get(['address', 'state'])?.patchValue(null);
+        }
+    }
+
+    public changeRegions(region: string): void {
+        if (region) {
+            this.loadingVisible = true;
+            this.AddressService.getStates('regiao', region)
+                .pipe(
+                    finalize(() => {
+                        this.loadingVisible = false;
+                    })
+                )
+                .subscribe((states: StateDto[]) => {
+                    this.states = states;
+                });
+        } else {
+            this.states = [];
+            this.form.get(['address', 'state'])?.patchValue(null);
+            this.changeCountries(this.form.get(['address', 'country'])?.value);
         }
     }
 
