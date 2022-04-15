@@ -1,4 +1,3 @@
-import { PrimeNgModule } from './../prime-ng/prime-ng/prime-ng.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +9,7 @@ import { RegisterCompanyDialogComponent } from './pages/register-company-dialog/
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 
 @NgModule({
     declarations: [
